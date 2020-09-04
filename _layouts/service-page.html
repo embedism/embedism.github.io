@@ -1,0 +1,39 @@
+---
+layout: default
+---
+<!-- Text Title -->
+<section id="one">
+	<div class="inner">
+		<header class="major">
+			<h1>{{ page.title }}</h1>
+		</header>
+		<p><b>{{ page.sub-title }}</b></p>
+		<!-- <span class="image main"><img src="images/pic11.jpg" alt="" /></span> -->
+		{{ content }}
+	</div>
+</section>
+
+<!-- Main -->
+	<div id="main">
+		<!-- One -->
+			<section id="one" class="tiles">
+				{% assign category = page.title|downcase %}
+
+				{% for post in site.posts %}
+				{% if post.categories contains {{category}}  %}
+				<article>
+					<span class="image">
+						<img src="images/pic01.jpg" alt="" />
+					</span>
+					<header class="major">
+						<h3>{{ post.title }}</h3>
+						<p>{{post.summary}}</p></br>
+						<p>{{post.content}}</p>
+					</header>
+				</article>
+				{% endif %}
+				{% endfor %}
+			</section>
+	</div>
+
+				
