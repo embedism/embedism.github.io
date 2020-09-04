@@ -1,11 +1,16 @@
 ---
 title: Partnerships
-sub-title: Building the platform for your idea.
-layout: service-page
+sub-title: Flexible additions to your team and products
+layout: text-only
 
 order: 5
 ---
+## Partnerships
+Hiring the right engineers for your growing team can be hard. Embedism takes that trouble away when you integrate us in to your team.
 
-Hardware is the platform that underpins your idea. It needs to be reliable, considered, and cost-effective. Embedism has designed hardware for a multitude of different industries so we can bring a new perspective to designing the hardware for your idea.
+Embedism offers retainers on a rolling monthly basis. If you just need us for an hour a week to bounce ideas off, or you need us to carry out some lengthy R&D, we can be adaptable to suit your needs.
 
-We work with industry leading tools to design your hardware before manufacturing and assembling it. We then fully test and iterate on the design to ensure that your product or prototype is the best it can be.
+## Licensing
+Our custom in-house tools and frameworks are available to license during the development and production phases of your product's lifecycle. Our tools can help you iterate faster during your R&D phases and reduce the time required for us to convert your ideas into production-ready firmware, this saves you time and money.
+
+Get in touch with us to discuss your software and firmware licensing requirements and to find out what we have to offer.

@@ -1,7 +1,7 @@
 ---
 title: Production
 sub-title: Building the platform for your idea.
-layout: service-page
+layout: text-only
 
 order: 4
 ---
