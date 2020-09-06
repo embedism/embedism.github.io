@@ -1799,6 +1799,13 @@ input, select, textarea {
 			text-transform: uppercase;
 		}
 
+		header.minor > p {
+			font-size: 0.7em;
+			font-weight: 600;
+			letter-spacing: 0.25em;
+			margin-bottom: 0;
+		}
+
 		body.is-ie header.major > :first-child:after {
 			max-width: 9em;
 		}
@@ -3482,8 +3489,8 @@ input, select, textarea {
 
 		#banner.major {
 			height: 75vh;
-			min-height: 30em;
-			max-height: 50em;
+			min-height: 20em;
+			max-height: 10em;
 		}
 
 			#banner.major.alt {

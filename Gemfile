@@ -33,4 +33,3 @@ gem 'jekyll-sitemap'
 
 # SEO
 gem 'jekyll-seo-tag'
-
