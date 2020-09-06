@@ -1,0 +1,144 @@
+---
+layout: default
+---
+<script src="https://www.ravsam.in/assets/jquery/dist/jquery.min.js"></script>
+<script src="https://www.ravsam.in/assets/popper.js/dist/umd/popper.min.js"></script>
+<script src="https://www.ravsam.in/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script>
+    // for validating the forms
+    (function () {
+        'use strict';
+        window.addEventListener(
+            'load', function () {
+                var formObject = $('#contact-form');
+                var form = formObject[0];
+                if (form != undefined) {
+                    form.addEventListener(
+                        'submit',
+                        function (event) {
+                            var submitBtn = $('button[name="submit"]')[0];
+                            submitBtn.disabled = true;
+                            submitBtn.innerHTML = 'Submitting request...';
+
+                            if (form.checkValidity() === false) {
+                                submitBtn.disabled = false;
+                                submitBtn.innerHTML = 'Submit request -&gt;';
+                                event.preventDefault();
+                                event.stopPropagation();
+                            }
+                            else {
+                                var url = 'https://script.google.com/macros/s/AKfycbwGTg12WMbVbd3hm3pSCTLQqPukSvtkOgRmjbRwOuKTr34N45j5/exec';
+                                var redirectSuccessUrl = '/thanks/';
+                                var redirectFailedUrl = '/failed/';
+                                var xhr = $.ajax({
+                                    url: url,
+                                    method: 'GET',
+                                    dataType: 'json',
+                                    data: formObject.serialize(),
+                                    success: function (data) {
+                                        submitBtn.disabled = false;
+                                        submitBtn.innerHTML = 'Submit request -&gt;';
+                                        $(location).attr('href', redirectSuccessUrl);
+                                    },
+                                    error: function (data) {
+                                        submitBtn.disabled = false;
+                                        submitBtn.innerHTML = 'Submit request -&gt;';
+                                        $(location).attr('href', redirectFailedUrl);
+                                    },
+                                });
+                                event.preventDefault();
+                                event.stopPropagation();
+                            }
+                            form.classList.add('was-validated');
+                        },
+                        false
+                    );
+                }
+            },
+            false
+        );
+    })();
+</script>
+<!-- Main -->
+<div id="main" class="alt">
+
+	<!-- One -->
+		<section id="one">
+			<div class="inner">
+				<header class="major">
+					{% include breadcrumbs.html %}
+					<h1>{{ page.title }}</h1>
+				</header>
+				{{ content }}
+				<form id="contact-form" class="needs-validation" role="form" novalidate>
+					<div class="row gtr-uniform">
+						<div class="col-6 col-12-xsmall">
+							<input type="text" name="name" id="name" value="" placeholder="Name" />
+						</div>
+						<div class="col-6 col-12-xsmall">
+							<input type="email" name="email" id="email" value="" placeholder="Email" />
+						</div>
+						<!-- Break -->
+						<div class="col-12">
+							<select name="category" id="category">
+								<option value="">- Category -</option>
+								<option value="1">Wearable/Health Tech</option>
+								<option value="1">Smart Home</option>
+								<option value="1">Light Industrial</option>
+								<option value="1">Sensing/IOT</option>
+							</select>
+						</div>
+						<!-- Break -->
+						<div class="col-6 col-12-xsmall">
+							<input type="text" name="summary" id="summary" value="" placeholder="Summary of Idea" />
+						</div>
+						<div class="col-12">
+							<textarea name="description" id="description" placeholder="Enter a description of your idea" rows="6"></textarea>
+						</div>
+						<!-- Break -->
+						<div class="col-12">
+							<ul class="actions">
+								<li><input type="submit" name="submit" value="Submit Idea" class="primary" /></li>
+							</ul>
+						</div>
+					</div>
+				</form>
+
+
+
+
+
+				<form id="contact-form" class="needs-validation" role="form" novalidate>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<input type="text" name="name" class="form-control" placeholder="Full Name 	" required>
+							</div>
+						</div>
+						</br></br>
+						<div class="col-md-6">
+							<div class="form-group">
+								<input type="email" name="email" class="form-control" placeholder="Email" required>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<input type="tel" name="summary" class="form-control" placeholder="One sentence summary of your idea" required>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<input type="text" name="description" class="form-control" placeholder="More details about your idea" required>
+							</div>
+						</div> 	
+						<div class="col-12 mt-3">
+							<button class="btn btn-primary" type="submit" name="submit">Submit request -&gt;</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</section>
+
+</div>
+
+				
