@@ -16,7 +16,7 @@
 
 		gtag('config', 'UA-176713209-1');
 		</script>
-
+		
 		<title>{{ page.title }} | {{ site.title }}</title>
 		<meta name="description" content="Embedism provides high quality electronic engineering and firmware design services at affordable prices. We bring your ideas to life.">
 
@@ -34,6 +34,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href={{ "assets/css/main.css" | absolute_url }} />
 		<noscript><link rel="stylesheet" href={{ "assets/css/noscript.css" | absolute_url }} /></noscript>
+
+		{% seo %}
+
 		<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="4f7a9272-9b19-4f0c-93de-7ef40f70a562";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 	</head>
 	<body class="is-preload">
@@ -44,7 +47,7 @@
 				<!-- Header -->
 					<header id="header" class="alt">
 						<a href={{ "/" | absolute_url }} class="logo">
-							<strong>{{ site.title }}</strong><span>{{ site.tagline }}</span></a>
+							<strong>{{ site.title }}</strong><span>{{ site.slogan }}</span></a>
 						<nav>
 							<a href="#menu">Menu</a>
 						</nav>
