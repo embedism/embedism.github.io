@@ -1,9 +1,9 @@
 ---
 layout: default
 ---
-<script src="https://www.ravsam.in/assets/jquery/dist/jquery.min.js"></script>
-<script src="https://www.ravsam.in/assets/popper.js/dist/umd/popper.min.js"></script>
-<script src="https://www.ravsam.in/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src={{ "assets/js/jquery.min.js" | absolute_url }}></script>
+<script src={{ "assets/js/popper.min.js"| absolute_url }}></script>
+<script src={{ "assets/js/bootstrap.min.js" | absolute_url }}></script>
 <script>
     // for validating the forms
     (function () {
@@ -16,13 +16,13 @@ layout: default
                     form.addEventListener(
                         'submit',
                         function (event) {
-                            var submitBtn = $('button[name="submit"]')[0];
-                            submitBtn.disabled = true;
-                            submitBtn.innerHTML = 'Submitting request...';
+                            var submitBtn = $('button[name="submit-form"]')[0];
+                            // submitBtn.disabled = true;
+                            //submitBtn.innerHTML = 'Submitting request...';
 
                             if (form.checkValidity() === false) {
-                                submitBtn.disabled = false;
-                                submitBtn.innerHTML = 'Submit request -&gt;';
+                                // submitBtn.disabled = false;
+                                //submitBtn.innerHTML = 'Submit Idea';
                                 event.preventDefault();
                                 event.stopPropagation();
                             }
@@ -36,13 +36,13 @@ layout: default
                                     dataType: 'json',
                                     data: formObject.serialize(),
                                     success: function (data) {
-                                        submitBtn.disabled = false;
-                                        submitBtn.innerHTML = 'Submit request -&gt;';
+                                        //submitBtn.disabled = false;
+                                        //submitBtn.innerHTML = 'Submit Idea';
                                         $(location).attr('href', redirectSuccessUrl);
                                     },
                                     error: function (data) {
-                                        submitBtn.disabled = false;
-                                        submitBtn.innerHTML = 'Submit request -&gt;';
+                                        //submitBtn.disabled = false;
+                                        //submitBtn.innerHTML = 'Submit Idea';
                                         $(location).attr('href', redirectFailedUrl);
                                     },
                                 });
@@ -98,7 +98,7 @@ layout: default
 						<!-- Break -->
 						<div class="col-12">
 							<ul class="actions">
-								<li><input type="submit" name="submit" value="Submit Idea" class="primary" /></li>
+								<li><input type="submit" name="submit-form" value="Submit Idea" class="primary" /></li>
 							</ul>
 						</div>
 					</div>
