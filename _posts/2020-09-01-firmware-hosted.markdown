@@ -6,5 +6,5 @@ categories: firmware
 excerpt_separator: <!--more-->
 summary: Windows and the Web
 ---
-We can create customised software to help you test your hardware, such as Windows emulators and drag-n-drop scripting interfaces
+<p style="font-weight: 500; letter-spacing: 0.1em; text-transform: none;">We can create customised software to help you test your hardware, such as Windows emulators and drag-n-drop scripting interfaces</p>
 <!--more-->

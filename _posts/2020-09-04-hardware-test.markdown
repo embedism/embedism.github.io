@@ -9,5 +9,5 @@ summary: Verification and Refinement
 
 Rigorous testing and iterative design improvements to refine your product.
 <p><br></p>
-We debug design issues until they are fully understood and resolved. Our testing partners can help you work towards CE, FCC, and rest-of-world certifications.
+<p style="font-weight: 500; letter-spacing: 0.1em; text-transform: none;">We debug design issues until they are fully understood and resolved. Our testing partners can help you work towards CE, FCC, and rest-of-world certifications.</p>
 <!--more-->
