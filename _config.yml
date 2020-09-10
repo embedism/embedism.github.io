@@ -22,12 +22,12 @@ title: Embedism
 tagline: Affordable engineering and professional prototyping services
 slogan: beyond prototyping
 name: Embedism
-email: your-email@example.com
+email: hello@embedism.com
 description: >- # this means to ignore newlines until "baseurl:"
   Embedism provides affordable engineering and professional prototyping services
    to SMEs and individuals looking to develop products
 baseurl: "" # the subpath of your site, e.g. /blog
-url: https://embedism.github.io # the base hostname & protocol for your site, e.g. http://example.com
+url: https://embedism.com # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
 github_username:  jekyll
 permalink: /:categories/:title/

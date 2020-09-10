@@ -16,13 +16,13 @@ layout: default
                     form.addEventListener(
                         'submit',
                         function (event) {
-                            var submitBtn = $('button[name="submit-form"]')[0];
-                            // submitBtn.disabled = true;
-                            //submitBtn.innerHTML = 'Submitting request...';
+                            let submitBtn = document.getElementById("submit-button");
+                            submitBtn.disabled = true;
+                            submitBtn.value = 'Submitting idea...';
 
                             if (form.checkValidity() === false) {
-                                // submitBtn.disabled = false;
-                                //submitBtn.innerHTML = 'Submit Idea';
+                                submitBtn.disabled = false;
+                                submitBtn.value = 'Please try again';
                                 event.preventDefault();
                                 event.stopPropagation();
                             }
@@ -36,13 +36,13 @@ layout: default
                                     dataType: 'json',
                                     data: formObject.serialize(),
                                     success: function (data) {
-                                        //submitBtn.disabled = false;
-                                        //submitBtn.innerHTML = 'Submit Idea';
+                                        submitBtn.disabled = false;
+                                        submitBtn.value = 'Submit Idea';
                                         $(location).attr('href', redirectSuccessUrl);
                                     },
                                     error: function (data) {
-                                        //submitBtn.disabled = false;
-                                        //submitBtn.innerHTML = 'Submit Idea';
+                                        submitBtn.disabled = false;
+                                        submitBtn.value = 'Submit Idea';
                                         $(location).attr('href', redirectFailedUrl);
                                     },
                                 });
@@ -73,10 +73,10 @@ layout: default
 				<form id="contact-form" class="needs-validation" role="form" novalidate>
 					<div class="row gtr-uniform">
 						<div class="col-6 col-12-xsmall">
-							<input type="text" name="name" id="name" value="" placeholder="Name" />
+							<input type="text" name="name" id="name" value="" placeholder="Name" required/>
 						</div>
 						<div class="col-6 col-12-xsmall">
-							<input type="email" name="email" id="email" value="" placeholder="Email" />
+							<input type="email" name="email" id="email" value="" placeholder="Email" required/>
 						</div>
 						<!-- Break -->
 						<div class="col-12">
@@ -90,15 +90,15 @@ layout: default
 						</div>
 						<!-- Break -->
 						<div class="col-6 col-12-xsmall">
-							<input type="text" name="summary" id="summary" value="" placeholder="Summary of Idea" />
+							<input type="text" name="summary" id="summary" value="" placeholder="Summary of Idea" required/>
 						</div>
 						<div class="col-12">
-							<textarea name="description" id="description" placeholder="Enter a description of your idea" rows="6"></textarea>
+							<textarea name="description" id="description" placeholder="Enter a description of your idea" rows="6" required></textarea>
 						</div>
 						<!-- Break -->
 						<div class="col-12">
 							<ul class="actions">
-								<li><input type="submit" name="submit-form" value="Submit Idea" class="primary" /></li>
+								<li><input type="submit" name="submit-form" value="Submit Idea" class="primary" id="submit-button" /></li>
 							</ul>
 						</div>
 					</div>
