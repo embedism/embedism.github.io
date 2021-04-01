@@ -3,7 +3,7 @@ title: Production
 sub-title: Building the platform for your idea.
 layout: text-only
 
-order: 4
+order: 6
 ---
 Getting short runs of your product made doesn't have to break the bank.
 

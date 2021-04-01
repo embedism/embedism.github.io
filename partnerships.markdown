@@ -3,7 +3,7 @@ title: Partnerships
 sub-title: Flexible additions to your team and products
 layout: text-only
 
-order: 5
+order: 7
 ---
 ## Partnerships
 Hiring the right engineers for your growing team can be hard. Embedism takes that trouble away when you integrate us in to your team.
