@@ -4,8 +4,7 @@ title:  "Development Platforms"
 date:   2021-04-01 13:45:28 +0100
 categories: blog
 excerpt_separator: <!--more-->
-summary: Some projects require a robust development platform for 
-testing out ideas, but what types of platform are there, and how can they propel your product development?
+summary: Some projects require a robust development platform for testing out ideas, but what types of platform are there, and how can they propel your product development?
 ---
 Some projects require a robust development platform for testing out ideas, but what types of platform are there, and how can they propel your product development?
 <!--more-->
