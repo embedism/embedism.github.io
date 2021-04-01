@@ -25,9 +25,9 @@ There are countless hardware development platforms available ranging from Arduin
 
 Key Benefits | Main Downsides
 --- | ---
-* pre-verified hardware | * often physically very large
-* online support forums | * limited in functionality without expansion boards
-* low-cost |
+pre-verified hardware | often physically very large
+online support forums | limited in functionality without expansion boards
+low-cost |
 
 ### Existing Firmware Platforms
 
@@ -37,8 +37,8 @@ Whilst the functionality of these tools is limited they can really help to speed
 
 Key Benefits | Main Downsides
 --- | ---
-* quick and easy to make simple applications | * overy limited in functionality
-* free | * relies on using supported hardware
+quick and easy to make simple applications | very limited in functionality
+free | relies on using supported hardware
 
 ### Custom Software Platforms
 
@@ -50,10 +50,10 @@ This works since we develop as much application code as possible to be platform 
 
 Key Benefits | Main Downsides
 --- | ---
-* utilise computers to speed up development | * requires specialist knowledge when writing and porting code
-* ideas can be tested extremely fast | * upfront cost
-* allow for more flexible working methods |
-* don’t have to deal with hardware issues |
+utilise computers to speed up development | requires specialist knowledge when writing and porting code
+ideas can be tested extremely fast | upfront cost
+allow for more flexible working methods |
+don’t have to deal with hardware issues |
 
 ### Custom Hardware and Firmware Platforms
 
@@ -65,11 +65,11 @@ We can develop a custom hardware platform alongside the necessary software and f
 
 Key Benefits | Main Downsides
 --- | ---
-* utilise custom tools to speed up development | * initial upfront cost and time
-* hardware can be tested in target environment | * cost of change if target hardware needs to change significantly
-* lower overall project cost and time |
-* identify project risks and hurdles earlier |
-* something to show potential investors and backers |
+utilise custom tools to speed up development | initial upfront cost and time
+hardware can be tested in target environment | cost of change if target hardware needs to change significantly
+lower overall project cost and time |
+identify project risks and hurdles earlier |
+something to show potential investors and backers |
 
 ## About Embedism
 
