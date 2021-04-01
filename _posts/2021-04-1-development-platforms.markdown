@@ -71,6 +71,8 @@ lower overall project cost and time |
 identify project risks and hurdles earlier |
 something to show potential investors and backers |
 
+[Download this post as a PDF]({{ site.baseurl }} /resource-pack/Embedism-Dev-Platforms-v1.5.pdf )
+
 ## About Embedism
 
 Embedism was founded by Chay Strawbridge and Nathan Ruttley to provide an affordable alternative to expensive engineering consultancies.
