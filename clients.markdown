@@ -11,6 +11,7 @@ order: 6
 **Brief:** design the interfacing electronics and firmware for the Sample Sheet fabric sensor and produce 10 units.
 
 Embedism developed the hardware and firmware required to interface to Infi-Tex's smart textile sensor. We then produced upwards of 10 units including sourcing PCBs from our manufacturing partners, hand-finishing in-house, and CNC machining the plastic casing.
+
 ---
 ## [Radbot](https://www.radbot.com) from [Vestemi](https://vestemi.com/)
 
