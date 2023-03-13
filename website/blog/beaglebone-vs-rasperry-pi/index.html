@@ -1,0 +1,351 @@
+<!DOCTYPE HTML>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-176713209-1"></script>
+		<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-176713209-1');
+		</script>
+		
+		<title>BeagleBone vs. Raspberry Pi: which is the best prototyping platform for your product? | Embedism</title>
+		<meta name="description" content="Embedism provides high quality electronic engineering and firmware design services at affordable prices. We bring your ideas to life.">
+
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "Organization",
+			"url": "https://embedism.com",
+			"logo": "https://embedism.com/images/embedism.png"
+		}
+		</script>
+		
+
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href=https://embedism.com/assets/css/main.css />
+		<noscript><link rel="stylesheet" href=https://embedism.com/assets/css/noscript.css /></noscript>
+
+		<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>BeagleBone vs. Raspberry Pi: which is the best prototyping platform for your product? | Embedism</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="BeagleBone vs. Raspberry Pi: which is the best prototyping platform for your product?" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="You’ve hit on an idea that’s going to be a winner, done some research online, and decided to build some hardware to showcase it. Sometimes you need a bit more power than an Arduino, say if you want to run a containerised application with Balena, or output HD video. If an Arduino or MCU just won’t cut it — you need a single board computer. The two clear choices in this category are the Raspberry Pi and BeagleBone. With a lot of similarities and nuanced differences, choosing between these two options can be a difficult decision." />
+<meta property="og:description" content="You’ve hit on an idea that’s going to be a winner, done some research online, and decided to build some hardware to showcase it. Sometimes you need a bit more power than an Arduino, say if you want to run a containerised application with Balena, or output HD video. If an Arduino or MCU just won’t cut it — you need a single board computer. The two clear choices in this category are the Raspberry Pi and BeagleBone. With a lot of similarities and nuanced differences, choosing between these two options can be a difficult decision." />
+<link rel="canonical" href="https://embedism.com/blog/beaglebone-vs-rasperry-pi/" />
+<meta property="og:url" content="https://embedism.com/blog/beaglebone-vs-rasperry-pi/" />
+<meta property="og:site_name" content="Embedism" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-11-15T12:45:28+00:00" />
+<meta name="google-site-verification" content="7faac71f1d48bab2" />
+<script type="application/ld+json">
+{"url":"https://embedism.com/blog/beaglebone-vs-rasperry-pi/","mainEntityOfPage":{"@type":"WebPage","@id":"https://embedism.com/blog/beaglebone-vs-rasperry-pi/"},"description":"You’ve hit on an idea that’s going to be a winner, done some research online, and decided to build some hardware to showcase it. Sometimes you need a bit more power than an Arduino, say if you want to run a containerised application with Balena, or output HD video. If an Arduino or MCU just won’t cut it — you need a single board computer. The two clear choices in this category are the Raspberry Pi and BeagleBone. With a lot of similarities and nuanced differences, choosing between these two options can be a difficult decision.","headline":"BeagleBone vs. Raspberry Pi: which is the best prototyping platform for your product?","dateModified":"2019-11-15T12:45:28+00:00","@type":"BlogPosting","datePublished":"2019-11-15T12:45:28+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+		<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="4f7a9272-9b19-4f0c-93de-7ef40f70a562";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+						<a href=https://embedism.com/ class="logo">
+							<strong>Embedism</strong><span>beyond prototyping</span></a>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<ul class="links">
+						
+							
+							
+								<li><a href="https://embedism.com/404.html"></a></li>
+							
+							
+							
+								<li><a href="https://embedism.com/robots.txt"></a></li>
+							
+							
+							
+								<li><a href="https://embedism.com/sitemap.xml"></a></li>
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+								<li><a href="https://embedism.com/feed.xml"></a></li>
+							
+							
+							
+								<li><a href="https://embedism.com/">Home</a></li>
+							
+							
+							
+								<li><a href="https://embedism.com/mission/">Mission</a></li>
+							
+							
+							
+								<li><a href="https://embedism.com/capabilities/">Capabilities</a></li>
+							
+							
+							
+								<li><a href="https://embedism.com/hardware/">Hardware</a></li>
+							
+							
+							
+								<li><a href="https://embedism.com/firmware/">Firmware</a></li>
+							
+							
+							
+								<li><a href="https://embedism.com/your-idea/">Your Idea</a></li>
+							
+							
+							
+								<li><a href="https://embedism.com/clients/">Clients</a></li>
+							
+							
+							
+								<li><a href="https://embedism.com/production/">Production</a></li>
+							
+							
+							
+								<li><a href="https://embedism.com/partnerships/">Partnerships</a></li>
+							
+							
+							
+								<li><a href="https://embedism.com/blog/">Blog</a></li>
+							
+							
+						</ul>
+					</nav>
+
+				<!-- Content -->
+				<!-- Main -->
+<div id="main" class="alt">
+
+	<!-- One -->
+		<section id="one">
+			<div class="inner">
+				<header class="major">
+					<div id="breadcrumbs">
+
+<a href="/">Home</a>
+
+  
+    / <a href="/blog/">Blog</a>
+  
+
+  
+    / BeagleBone vs. Raspberry Pi: which is the best prototyping platform for your product?
+  
+
+</div>
+					<h1>BeagleBone vs. Raspberry Pi: which is the best prototyping platform for your product?</h1>
+				</header>
+				<p>You’ve hit on an idea that’s going to be a winner, done some research online, and decided to build some hardware to showcase it. Sometimes you need a bit more power than an Arduino, say if you want to run a containerised application with Balena, or output HD video. If an Arduino or MCU just won’t cut it — you need a single board computer. The two clear choices in this category are the Raspberry Pi and BeagleBone. With a lot of similarities and nuanced differences, choosing between these two options can be a difficult decision.</p>
+
+<p>This article will help you navigate the capabilities and differing advantages of the BeagleBone and Raspberry Pi when considering mass manufacture in the future.</p>
+
+<p>The topics covered will be:</p>
+<ul>
+  <li>Suitability for your application</li>
+  <li>Timing and development cycles</li>
+  <li>How easy it is to integrate the platforms with your product</li>
+  <li>Open-source design and single-source supply</li>
+</ul>
+
+<hr />
+
+<h2 id="suitability">Suitability</h2>
+
+<blockquote>
+  <p>“I just assumed I needed an OS”</p>
+</blockquote>
+
+<p>The BeagleBone Black and Raspberry Pi 4 are different beasts. The first thing you should do when choosing a platform is to determine which product is best suited.</p>
+
+<p>For example, when working on video intensive projects the Raspberry Pi 4 is a clear choice. Need to integrate with various peripherals? Then the BeagleBone Black is the one for you.</p>
+
+<p>Seek out the wealth of online articles that comparatively discuss the technical features of these two devices to determine what’s best for you.</p>
+
+<h3 id="do-you-need-all-that-power">Do you need all that power?</h3>
+
+<p>Depending on your application you may be able to use a lower powered device. If you are not sure if you need an OS you probably don’t!</p>
+
+<p>Work out the core features of your product and determine if they could be run on a powerful MCU. If you can base your product around an MCU you will simplify your development and sourcing, reduce your BOM cost, and save yourself a lot of hassle.</p>
+
+<h3 id="timing">Timing</h3>
+
+<blockquote>
+  <p>If not now, when?</p>
+</blockquote>
+
+<p>Choosing what platform to base your project around is often a decision based upon what parts you have on your workbench or stashed in a drawer. This is not a bad approach, especially when you are building a proof-of-concept or testing out a new idea. But what happens after you have garnered support for your idea and want to start your first proper development cycle? It is tempting to use the platform that you based your POC around, but you should pause and consider what your hardware really needs to do.</p>
+
+<p>Figuring out hardware requirements early will save on software effort later, but consider if this works with your development cycles. If fast iteration in the development stage will allow you to raise funds and give you time to reconsider your hardware later then you should do this. If your product is only feasible when developed on the appropriate hardware, you should aim to integrate this as early as possible.</p>
+
+<h2 id="integrability">Integrability</h2>
+
+<p>This section will cover how the BeagleBone or Raspberry Pi might integrate into your product.</p>
+
+<p>There are commercial products available with both the Raspberry Pi and BeagleBone inside them. I’ve seen cinema ice-cream dispensers boot up with the Raspberry Pi logo, and the Revolv smart home hub was based around the AM335 and other BeagleBone Black components.</p>
+
+<p>These different levels of integration have pros and cons:</p>
+
+<p>For example, only a very limited run of the cinema ice-cream machines is needed due to the limited number of cinemas. The manufacturer’s core business is building ice-cream dispensers, not building electronics. So, it makes perfect sense for them to use an off the shelf touch screen and a Raspberry Pi for their “smart” ice-cream machine. This avoids them hiring somebody capable of laying out a complex PCB like that required for a Linux SBC. They also have plenty of space inside their enclosure and a software update would be as simple as a technician changing the SD card in the device — no extra training required and no extra cost.</p>
+
+<p>If Revolv tried to squeeze a whole BeagleBone Black into their smart home hub it would have been a very bulky and expensive device. When building a new type of product it makes sense to hire specialist engineers and create custom hardware so that the end result is as finessed as it can be. As will be discussed below in Form Factor Freedom, if you need more flexibility in the industrial design of your product you’ll have to layout your own PCB to ensure it fits within the casing.</p>
+
+<h3 id="open-source">Open Source</h3>
+
+<p>An open source design means you can modify, improve, and reproduce the design as much as you like. But remember to always check the license conditions!</p>
+
+<p>The Raspberry Pi is partially open source whereas the BeagleBone line of products is completely open source. You can grab the schematics for the Pi online but you won’t find the layout or be able to buy the core component — the Broadcom processor! Searching online for the BCM2711 won’t give you many results. To get your hands on it you’ll have to convince Broadcom that your product will be selling in vast quantities and agree some other business terms with them.</p>
+
+<p>Conversely, the BeagleBone Black design files are all available on Upverter for you to fork. (That means you technically don’t even need any paid-for design tools to modify the files!) So you can download the data and import them into your preferred ECAD tool.</p>
+
+<p>The BeagleBone Wiki contains all the design information and software images that you need to completely recreate the SBC. This makes it easy to modify the design for your specific application and to change the layout design to fit into your casing.</p>
+
+<p>However, the Raspberry Pi Foundation has a secret weapon…</p>
+
+<h3 id="pi-compute">Pi Compute</h3>
+
+<p>The Compute Module is a stripped down version of the Raspberry Pi with a form factor similar to that of a RAM stick. The idea is that you can build a custom PCB with a connector for the Compute Module. This allows you to utilise the design of the Raspberry Pi in your own hardware solution. You don’t need to worry about the complex layout requirements of the processor, RAM, and other supporting peripherals — these are all handled for you on the Compute Module.</p>
+
+<p>To get you up and running, the Compute Module is supplied with an open source breakout board that you can use as a starting point for your custom hardware. It is also guaranteed to be in production until January 2026 — this is a bit longer than the standard Raspberry Pis get.</p>
+
+<h3 id="element-14-pi-customisation">Element 14 Pi Customisation</h3>
+
+<p>Farnell Element 14 offer a Raspberry Pi customisation service. The website is quite outdated so it is not clear if this is still a service that they offer, but it could prove useful if your product only some basic extra features.</p>
+
+<h3 id="form-factor-freedom">Form Factor Freedom</h3>
+
+<p>The look and feel of your product is key to its identity. Trends are moving towards smaller and lighter devices resulting in restricted board space. Creative and considered board layout is essential to minimise board footprint whilst not causing any circuit issues. The BeagleBone Black ought to be a clear winner when it comes to form factor freedom but the Pi Compute Module is very small!</p>
+
+<p>Take a look at the table below to see a comparison of board sizes. Note that there is no “Compute Module” version of the BeagleBone Black so the measurements for the “BeagleBone Black Core” are estimates of the board size without connectors.</p>
+
+<h2 id="single-source-supply">Single-Source Supply</h2>
+
+<p>The phrase “single-source supply” often strikes fear into the heart of supply chain manager. What happens if the supplier has no stock? How long are the lead times? What if the supplier goes out of business? Mitigating the risks of single-source supply can be tackled by both engineers and supply chain people.</p>
+
+<h3 id="manufacturers-and-distributors">Manufacturers and Distributors</h3>
+
+<p>Imagine that the BeagleBoard.org and Raspberry Pi Foundations go out of business and you are using one of their devices in your product. Both the Pi and BeagleBone can be purchased from many sources. These distributors may hold stock for some time and you will be able to buy it until they run out… But what happens afterwards?</p>
+
+<p>Manufacturers may spot a lucrative opportunity in producing these two devices, so they prepare their etching tanks and SMD lines for a wave of orders. However, there will only be orders for the BeagleBone family of devices as no designs are available for the Pi and you can’t buy the processor! This means that you are unlikely to get your hands on a Raspberry Pi ever again. Scarcity also means high prices and waning communities — removing two great selling points for the Pi.</p>
+
+<p>Consider what will happen when the model of device you are using goes EOL or the manufacturer goes bust. How will you mitigate these risks during your design phase? The BeagleBone family of products reduces your exposure to the risks of single source supply, but does this fit with your development cycles?</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>Both the Raspberry Pi and BeagleBone Black have their merits, and both are fantastic development platforms. Whilst you are in the development stages of your project you could use either one — but remember to switch to the most appropriate platform at the right time.</p>
+
+<p>For totally integrated, space constrained products that will be manufactured in the 1000s, the BeagleBone is a clear winner as you can seamlessly integrate its open source design with the rest of your electronic and mechanical hardware.</p>
+
+<p>When manufacturing one-offs, bespoke items, video intensive applications, or products in the low 100s, you might consider the Raspberry Pi for its better community, stellar GPU performance and general ease of use.</p>
+
+			</div>
+		</section>
+
+</div>
+
+				<!-- Contact -->
+					<section id="contact">
+						<div class="inner">
+							<section>
+								<section>
+									<div>
+										<h3>Get in touch</h3>
+										<span>Get in touch with us to have a chat about your project and to work out how we can help bring your idea to life.</br></br>You can chat to us at any time via the chat box in the bottom right corner of the site.</span>
+										</br></br>
+										<h3>Embedism</h3>
+										<span>Embedism provides affordable engineering and professional prototyping services
+ to SMEs and individuals looking to develop products across a broad range of categories. 
+ We build IOT, wearable, domestic, consumer, and light industrial electronics. We write firmware 
+ for BLE, low power, DSP, audio and video.</span>
+									</div>
+								</section>
+							</section>
+							<section class="split">
+								<section>
+									<div class="contact-method">
+										<span class="icon solid alt fa-envelope"></span>
+										<h3>Email</h3>
+										<a href="#">hello@embedism.com</a>
+									</div>
+								</section>
+								<section>
+									<div class="contact-method">
+										<span class="icon solid alt fa-phone"></span>
+										<h3>Phone</h3>
+										<span>+44 (0) 20 3290 7314</span>
+									</div>
+								</section>
+								<section>
+									<div class="contact-method">
+										<span class="icon solid alt fa-home"></span>
+										<h3>Address</h3>
+										<span>Embedism LTD<br />
+										Arch 533, Orphans Yard<br />
+										Brixton Station Road<br />
+London<br />
+										SW9 8QB
+										</span>
+									</div>
+								</section>
+							</section>
+						</div>
+					</section>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<ul class="icons">
+								<li><a href="https://www.instagram.com/embedism/" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+								<li><a href="https://github.com/embedism/" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								<li><a href="https://www.linkedin.com/company/19215489" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+								<li><a href="https://medium.com/embedism" class="icon brands alt fa-medium"><span class="label">Medium</span></a></li>
+							</ul>
+							<ul class="copyright">
+								<li>&copy; Embedism LTD 2019-2020</li></br>
+								<li>Design: <a href="https://html5up.net">HTML5 UP</a>  |  Converted to run on Jekyll by Embedism</li>
+								<li>Embedism Limited is a company registered in England and Wales with company number 11939367  |  <a href=https://embedism.com/privacy-policy>Privacy Policy</a>  |  <a href=https://embedism.com/terms-of-service>Terms of Service</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+		<script src=https://embedism.com/assets/js/jquery.min.js></script>
+		<script src=https://embedism.com/assets/js/jquery.scrolly.min.js></script>
+		<script src=https://embedism.com/assets/js/jquery.scrollex.min.js></script>
+		<script src=https://embedism.com/assets/js/browser.min.js></script>
+		<script src=https://embedism.com/assets/js/breakpoints.min.js></script>
+		<script src=https://embedism.com/assets/js/util.js></script>
+		<script src=https://embedism.com/assets/js/main.js></script>
+
+	</body>
+</html>

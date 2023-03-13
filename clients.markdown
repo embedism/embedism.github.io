@@ -5,6 +5,13 @@ layout: text-only
 
 order: 6
 ---
+## [Infi-Tex Sample Sheet](http://infi-tex.com)
+
+**Product:** The Infi-Tex Sample sheet demonstrates the power of Infi-Tex's smart textile sensor technology by showing all of the different ways that it can be used..  
+**Brief:** design the interfacing electronics and firmware for the Sample Sheet fabric sensor and produce 10 units.
+
+Embedism developed the hardware and firmware required to interface to Infi-Tex's smart textile sensor. We then produced upwards of 10 units including sourcing PCBs from our manufacturing partners, hand-finishing in-house, and CNC machining the plastic casing.
+---
 ## [Radbot](https://www.radbot.com) from [Vestemi](https://vestemi.com/)
 
 **Product:** Radbot is Vestemi's flagship, award-winning, smart heating controller that saves people money on their energy bills.  

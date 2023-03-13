@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>Infi-Tex Visualiser</title>
+<style>
+
+canvas {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    transition: width .5s, height .5s, top .5s, left .5s;
+}
+
+.air_cell_control{
+  background-color: white;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+#myProgress {
+  width: 100%;
+  background-color: grey;
+}
+
+#myBar {
+  width: 1%;
+  height: 30px;
+  background-color: green;
+}
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 1px 1px;
+  grid-template-areas: "LeftT . RightT" "LeftT LumB RightT" "LeftP . RightP" ". KneeR .";
+}
+
+.LeftT { grid-area: LeftT; }
+
+.RightP { grid-area: RightP; }
+
+.LumB { grid-area: LumB; }
+
+.RightT { grid-area: RightT; }
+
+.LeftP { grid-area: LeftP; }
+
+.KneeR { grid-area: KneeR; }
+
+
+
+
+
+
+</style>
+<script src='hterm_all.js'></script>
+<script>
+'use strict';
+
+const bleNusServiceUUID  = '6e400001-b5a3-f393-e0a9-e50e24dcca9e';
+const bleNusCharRXUUID   = '6e400002-b5a3-f393-e0a9-e50e24dcca9e';
+const bleNusCharTXUUID   = '6e400003-b5a3-f393-e0a9-e50e24dcca9e';
+const MTU = 20;
+
+var bleDevice;
+var bleServer;
+var nusService;
+var rxCharacteristic;
+var txCharacteristic;
+
+var connected = false;
+
+function connectionToggle() {
+    if (connected) {
+        disconnect();
+    } else {
+    	clearSendQueue();
+        connect();
+    }
+    document.getElementById('terminal').focus();
+}
+
+// Sets button to either Connect or Disconnect
+function setConnButtonState(enabled) {
+    if (enabled) {
+        document.getElementById("clientConnectButton").innerHTML = "Disconnect";
+    } else {
+        document.getElementById("clientConnectButton").innerHTML = "Connect";
+    }
+}
+
+function log_ble(x, error = false) {
+	println(x,error?"#ff0000": "#2050ee");
+}
+
+function connect() {
+    if (!navigator.bluetooth) {
+        log_ble('WebBluetooth API is not available.\r\n' +
+                    'Please make sure the Web Bluetooth flag is enabled.');
+        return;
+    }
+    log_ble('Requesting Bluetooth Device...');
+    navigator.bluetooth.requestDevice({
+        //filters: [{services: []}]
+        optionalServices: [bleNusServiceUUID],
+        acceptAllDevices: true
+    })
+    .then(device => {
+        bleDevice = device; 
+        log_ble('Found ' + device.name);
+        log_ble('Connecting to GATT Server...');
+        bleDevice.addEventListener('gattserverdisconnected', onDisconnected);
+        return device.gatt.connect();
+    })
+    .then(server => {
+        log_ble('Locate NUS service');
+        return server.getPrimaryService(bleNusServiceUUID);
+    }).then(service => {
+        nusService = service;
+        log_ble('Found NUS service: ' + service.uuid);
+    })
+    .then(() => {
+        log_ble('Locate RX characteristic');
+        return nusService.getCharacteristic(bleNusCharRXUUID);
+    })
+    .then(characteristic => {
+        rxCharacteristic = characteristic;
+        log_ble('Found RX characteristic');
+    })
+    .then(() => {
+        log_ble('Locate TX characteristic');
+        return nusService.getCharacteristic(bleNusCharTXUUID);
+    })
+    .then(characteristic => {
+        txCharacteristic = characteristic;
+        log_ble('Found TX characteristic');
+    })
+    .then(() => {
+        log_ble('Enable notifications');
+        return txCharacteristic.startNotifications();
+    })
+    .then(() => {
+        log_ble('Notifications started');
+        txCharacteristic.addEventListener('characteristicvaluechanged',
+                                          handleNotifications);
+        onConnected();
+    })
+    .catch(error => {
+        log_ble('' + error, true);
+        if(bleDevice && bleDevice.gatt.connected)
+        {
+            bleDevice.gatt.disconnect();
+        }
+    });
+}
+
+function disconnect() {
+    if (!bleDevice) {
+        log_ble('No Bluetooth Device connected...');
+        return;
+    } else {
+	    log_ble('Disconnecting from Bluetooth Device...');
+	    if (bleDevice.gatt.connected) {
+	        bleDevice.gatt.disconnect();
+	        connected = false;
+	        setConnButtonState(false);
+	        log_ble('Bluetooth Device connected: ' + bleDevice.gatt.connected);
+	    } else {
+	        log_ble('> Bluetooth Device is already disconnected');
+	    }
+	}
+}
+
+function onConnected() {
+ 	connected = true;
+	log_ble('\r\n' + bleDevice.name + ' Connected.');
+	setConnButtonState(true);
+	document.getElementById("connected-panel").style.display="block";
+}
+
+function onDisconnected() {
+    connected = false;
+    log_ble('\r\n' + bleDevice.name + ' Disconnected.', true);
+    setConnButtonState(false);
+    document.getElementById("connected-panel").style.display="none";
+}
+
+var air_cell_names = [
+"ThoracicLeft"	, 	
+"ThoracicRight" ,
+"Lumbar" 		,
+"KneeRaise" 	,
+"PelvicLeft" 	,
+"PelvicRight" 	];
+
+function handleNotifications(event) {
+//    console.log('notification');
+    let value = event.target.value;
+    // Convert raw data bytes to character values and use these to 
+    // construct a string.
+    let str = "";
+    let bytes = [];
+    for (let i = 0; i < value.byteLength; i++) {
+    	let byte = value.getUint8(i);
+        str += String.fromCharCode(byte).split(" ");
+        
+        bytes.push(byte);
+	}
+	if(!str.includes("\r")){
+		let values = str.split(",");
+        DrawPressurePoint.apply(null,values);
+	}
+	
+	/*for (let i = 0; i < value.byteLength; i++) {
+		let byte = value.getUint8(i);
+		let next_byte = 0;
+		if(i < value.byteLength - 1){
+			next_byte = value.getUint8(i+1);
+		}
+		
+		str += ('0x' + (byte & 0xFF).toString(16) + ' ');
+		
+        bytes.push(byte);
+    }*/
+    
+    if (window.expecting) {
+    	window.expecting.buffer = window.expecting.buffer.concat(str);
+		window.expecting.bytes = window.expecting.bytes.concat(bytes);
+    } else {
+		window.term_.io.println(str); 
+		window.term_.io.println(' ');   
+    }
+}
+
+function nusSendString(s) {
+    if(bleDevice && bleDevice.gatt.connected) {
+        enqueueNextChunk(s);
+    } else {
+        window.term_.io.println('Not connected to a device yet.');
+    }
+}
+
+function expect(regex, timeout, cb = console.log) {
+    // create expectation
+	window.expecting = {
+		buffer: "",
+		bytes: []
+	};
+
+    // poll for response, up to timeout
+	let start = performance.now();
+
+	let t = setInterval(function() {
+		let now = performance.now();
+
+		if (window.expecting &&  window.expecting.buffer) {
+			let found = false;
+
+		    if ( regex instanceof RegExp && regex.test(window.expecting.buffer) )
+		        found = true;
+		    if (typeof regex == "number" && window.expecting.bytes.length >= regex)
+		        found = true;
+
+		    if (found) {
+			    console.log("found "+window.expecting.buffer);
+			    cb(window.expecting.buffer, window.expecting.bytes);
+			    clearInterval(t);
+			    return;
+		    }
+		}
+		
+		if (now - start > timeout) {
+			print("timeout, received: "+window.expecting.buffer, "#ff0000");
+			cb(null);
+			clearInterval(t);
+            stopExpectingAnything();
+			return;
+		}
+	}, 1);	
+}
+
+function sendAndExpect(buf, regex = null, timeout = null, cb = null) {
+    
+    // expect the response   
+    if (regex != null) 
+	    expect(regex, timeout, cb);
+
+    // do the send
+	enqueueNextChunk(buf);
+}
+
+function stopExpectingAnything() {
+    window.expecting = null;
+}
+
+
+function enqueueNextChunk(a, log=false) {
+	
+	// lazy init our sender queue
+	if (!window.senderQueue) {
+		window.senderQueue = new Array();
+		window.sendQueueBusy = false;
+
+	window.senderInterval = setInterval(function() {
+			
+            // no queue? stop interval
+            if (!window.senderQueue) {
+                clearInterval(window.senderInterval);
+                return;
+            }
+
+			// disconnected? no action
+			if (!window.connected)
+			{
+				// ensure queue is emptied
+				window.senderQueue = new Array();
+				return;
+			}
+
+			// busy? no action
+			if (window.sendQueueBusy)
+				return;
+
+			// anything in queue?
+			if (window.senderQueue.length) {
+				// grab up to MTU bytes if available
+				let chunk = window.senderQueue.length;
+				if (chunk > MTU)
+					chunk = MTU;
+				
+				// prepare packet to send
+				let out = new Uint8Array(chunk);
+				for (let i=0; i<chunk; i++) {
+					out[i] = window.senderQueue[i];
+				}
+
+				window.sendQueueBusy = true;
+				rxCharacteristic.writeValue(out).then(function() {
+					// success: remove packet from queue
+					window.senderQueue.splice(0,chunk);
+				if (log)
+					console.log("sent "+out);					
+				}).catch(function(e) {
+					if (log)
+						console.log(e);
+				}).finally(function() {
+					window.sendQueueBusy = false;
+				});
+			}
+		}, 3);
+	}
+
+	// convert to uint8buf if is string
+	if (typeof a === 'string' || a instanceof String) {
+		let val_arr = new Uint8Array(a.length)
+        for (let i = 0; i < a.length; i++) {
+            let val = a[i].charCodeAt(0);
+            val_arr[i] = val;
+        }
+        a = val_arr;
+	}
+
+	// add the byte for sending
+	if (log)
+		console.log("queue "+a);
+	for (let i=0; i<a.length; i++)
+		window.senderQueue.push(a[i]);
+}
+
+function clearSendQueue() {
+	window.senderQueue = null;
+}
+
+var _commandLine = "";
+function sendStringWrapper(s) {
+	_commandLine += s;
+	
+	if (_commandLine.length > 256)
+		_commandLine = "";
+
+	if (s=="\r" || s=="\n") {
+		nusSendString(new String(_commandLine));
+		_commandLine="";
+	}
+}
+
+function initContent(io) {
+    io.println("\r\n\INFI-TEX INFI-SOLE DEMO\r\n© EMBEDISM LTD MAY 2020\r\n");
+}
+
+function setupHterm() {
+    const term = new hterm.Terminal();
+
+    term.onTerminalReady = function() {
+        const io = this.io.push();
+        io.onVTKeystroke = (string) => {
+
+			if(bleDevice && bleDevice.gatt.connected) {
+				if (string == "\n" || string=="\r") {
+					nusSendString("\n");
+					print("\r\n");
+				} else {
+					nusSendString(string);
+					print(string);
+				}
+			}
+        };
+		
+        io.sendString = nusSendString;
+        initContent(io);
+        this.setCursorVisible(true);
+        this.keyboard.characterEncoding = 'raw';
+    };
+    term.decorate(document.querySelector('#terminal'));
+    term.installKeyboard();
+
+    term.contextMenu.setItems([
+        ['Terminal Reset', () => {term.reset(); initContent(window.term_.io);}],
+        ['Terminal Clear', () => {term.clearHome();}]
+        //[hterm.ContextMenu.SEPARATOR],
+        //['foo', () => {bar();}]
+    ]);
+
+    document.querySelector("#terminal iframe").style.cssText = 
+    	document.querySelector("#terminal").style.cssText;
+
+    // Useful for console debugging.
+    window.term_ = term;
+}
+
+function hexToRgb(hex) {
+  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result ? {
+    r: parseInt(result[1], 16),
+    g: parseInt(result[2], 16),
+    b: parseInt(result[3], 16)
+  } : null;
+}
+
+function color(hex = "#ffffff") {
+	let col = hexToRgb(hex);
+	window.term_.io.print("\u001b[38;2;"+col.r+";"+col.g+";"+col.b+"m");
+}
+
+function println(x, hex = null) {
+	if (hex != null)
+		color(hex);
+	window.term_.io.println(x);
+	color();
+}
+
+function print(x,hex = null) {
+	if (hex != null)
+		color(hex);
+	window.term_.io.print(x);
+	color();
+}
+
+window.onload = function() {
+	lib.init(setupHterm);
+	//DrawPressurePoint(0,0,0);
+	//renderAllAirCellControls();
+	//let elements = document.getElementsByClassName("dualProgressBarOuter");
+    //for(let i=0;i<elements.length;i++){
+    //	DualProgressBarInit(elements[i],0,100);
+    //}
+};	
+
+////////////////////////////
+// upload functionality
+
+var keepUploading = false;
+
+function checksum8(data, len = 0) {
+	let x = 0;
+	
+	if (len == 0)
+	    len = data.length;
+
+	for (let i=0; i<len; i++) {
+		x = x + data[i];
+		x &= 0xff;
+	}
+	return x;
+}
+
+
+function uploadFilePart(response, data, cb, retries) {
+
+    // interrupt the upload if we have been flagged to do so.
+    if (!keepUploading) {
+    	clearSendQueue();
+    	stopExpectingAnything();
+    	cb(null);
+        return;
+    }
+
+	let pos = parseInt(response.split(",")[0]);
+	let chunkSize = parseInt(response.split(",")[1]);		
+	
+	let chunk = data.subarray(pos,pos + chunkSize);
+
+	let lastPacket = false;
+	if (pos + chunkSize >= data.length)
+		lastPacket = true;
+
+	print("\r" + Math.floor((pos / data.length) * 100 ) + "%","#ffff00");
+
+	sendAndExpect(chunk, /0x[\dABCDEF]{2}:/, 5000, function(response) {
+	
+		if (!response) {
+			cb(null);
+			return;
+		}	
+
+		let theirCrc = parseInt(response);
+		let ourCrc = checksum8(chunk,0);
+
+		// if crc matches, send 'o' for OK, 'r' for retry, 'c' for cancel
+		let conf = 'c';
+		if (theirCrc == ourCrc) {
+			conf = 'o';
+			retries = 0;	// reset retry count
+			console.log("crc matches");
+		} else {
+			retries++;
+			if (retries > 5) {
+				conf = 'c';
+				println("crc mismatch, too many failures","#ff0000");
+			} else {
+				conf = 'r';
+				println("crc mismatch, retry "+retry,"#ffff00");
+			}
+		}
+		
+		let next = /\d+,\d+:/
+		if (lastPacket)
+			next = />/
+					
+		sendAndExpect(conf, next, 1000, function(response) {
+
+			if (!response) {
+				cb(null);
+				return;
+			}
+
+			// complete?
+			if (lastPacket) {
+				println("\r\nupload complete","#00ff00");
+				stopExpectingAnything();
+				cb(true);
+			} else {
+				// upload another chunk
+				uploadFilePart(response, data,cb, retries);
+			}
+		});
+	
+	});
+	
+}
+
+function uploadFileData(name, data, cb) {
+
+	println("\r\nsending file "+name,"#ffff00");
+
+	sendAndExpect("fwrite "+name+" "+data.length+"\n", /\d+,\d+:/, 1000, function(response) {		
+
+		if (!response) {
+			cb(null);
+			return;
+		}
+		uploadFilePart(response, data, cb, 0);
+	});
+}
+
+function uploadFile() {
+	let fi = document.getElementById("fileUpload");
+	let filename = document.getElementById("fileName").value;
+
+	let file = (fi.files!=null) ? fi.files[0] : null;
+	if (!filename || !file) {	
+		document.getElementById('dialogUpload').open='';
+		return;
+	}
+	let size = file.size;
+
+	if (!filename || filename.length == 0) {
+	    filename = filename.split("\\").join("/");
+	    filename = filename.split(" ").join();
+	    filename = filename.split("/")[filename.split("/").length-1];
+	}
+	
+	let reader = new FileReader();
+	reader.onload = function() {
+		let arrayBuffer = reader.result;
+		let uint8View = new Uint8Array(arrayBuffer);
+		
+		keepUploading = true;
+		uploadFileData(filename, uint8View, function(ok) {
+			if (!ok) {
+				document.getElementById("dialogUpload").style.backgroundColor = "red";
+			} else {
+				document.getElementById("dialogUpload").style.backgroundColor = "lime";
+			}
+		});
+
+	}
+	reader.onerror = function() {
+		document.getElementById('dialogUpload').open='';
+		alert("error");
+	}
+	reader.readAsArrayBuffer(file);
+}
+
+function changeFile() {
+    let fi = document.getElementById("fileUpload");
+	let filename = fi.value;
+
+	if (filename) {	
+        filename = filename.split("\\").join("/");
+	    filename = filename.split(" ").join();
+	    filename = filename.split("/")[filename.split("/").length-1];
+
+	    document.getElementById("fileName").value = filename;	
+	}
+}
+
+function canelUpload() {
+    keepUploading = false;
+}
+
+////////////////////////////
+// down functionality
+
+var keepDownloading = false;
+
+function downloadChunk(pos, chunkSize, buffer, retries, cb) {
+
+    // buffer is fixed length, already created to be size of file
+    let size = buffer.length;
+
+    if (!keepDownloading) {
+        clearSendQueue();
+    	stopExpectingAnything();
+        return;
+    }
+
+    // request chunk.
+    // we expect 'chunkSize' bytes of data, then CRC in the form "0xAB:"
+    // so we add 5 chars to expected response length
+    let readBytes = chunkSize + 5;
+    sendAndExpect( pos + "," + chunkSize + "\n" , readBytes, 5000, function(responseStr, responseBytes) {
+    	if (!responseBytes || responseBytes.length != readBytes) {
+    		stopExpectingAnything();
+        	cb(null);
+        	return;
+        } else {
+        	            
+            // get their CRC
+            let theirCRC = "";
+            for (let i = responseBytes.length-5; i < responseBytes.length; i++)
+                theirCRC += String.fromCharCode(responseBytes[i]);
+            theirCRC = parseInt(theirCRC);
+
+            // calculate our CRC
+            let ourCRC = checksum8(responseBytes, chunkSize);
+             
+            if (theirCRC != ourCRC) {
+            	retries++
+            	if (retries > 5) {
+                    nusSendString("x"); // deliberately bail out
+                    cb(null);
+                    return;
+            	}
+            } else {
+            	// succes:  store response in buffer
+                for (let i=0; i<chunkSize; i++)
+            	    buffer[i+pos] = responseBytes[i];
+
+            	// inc to next chunk
+            	pos += chunkSize;
+                chunkSize = size - pos;
+                if (chunkSize > 128)
+                    chunkSize = 128;
+
+                print("\r" + Math.floor((pos / size) * 100 ) + "%","#ffff00");                    
+            }
+          
+            if (pos == size) {
+                // completed. send 0,0 to exit fread mode
+                sendAndExpect("0,0");
+                stopExpectingAnything();
+				cb(true);
+				return;
+            }
+
+            downloadChunk(pos, chunkSize, buffer, retries, cb);
+        }
+    });
+  
+}
+
+function saveData(data, fileName) {
+    let a = document.createElement("a");
+    document.body.appendChild(a);
+    a.style = "display: none";
+  
+	let blob = new Blob([data], {type: "octet/stream"});
+	let url = window.URL.createObjectURL(blob);
+	a.href = url;
+	a.download = fileName;
+	a.click();
+	a.remove();
+    setTimeout(()=>{
+	    window.URL.revokeObjectURL(url);
+	},0);
+}
+
+function downloadFile() {
+    let name = document.getElementById("downloadName").value;
+    let dialog =  document.getElementById("dialogDownload");
+    sendAndExpect("fread "+name+"\n", /\d+[\n\r]*0x00:/gm, 1000, function(response) {
+        if (!response) {
+        	dialog.style.backgroundColor = 'red';
+        } else {
+            // parse file size
+            let size = parseInt(response);
+            let buffer = new Uint8Array(size);
+            let chunkSize = size;
+            if (chunkSize > 128)
+                chunkSize = 128;
+
+            keepDownloading = true;
+
+            // download first chunk
+            downloadChunk(0, chunkSize, buffer, 0, function(ok) {
+                dialog.style.backgroundColor = ok ? 'lime' : 'red';
+            	saveData(buffer, name);
+            });
+        }
+    });
+}
+
+function cancelDownload() {
+    keepDownloading = false;
+}
+
+function sendAuth() {
+	let out = new Uint8Array(18);
+	out = [0x41,0x47,0x0A,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0x88];
+	enqueueNextChunk(out,true);
+}
+
+function sendAirCellLevel(bagid,level){
+	let out = new Uint8Array(18);
+	out = [0x41,0x47,0x2,0,bagid,level,0,0,0,0,0,0,0,0,0,0,0,0];
+	let checksum = checksum8(out,18);
+	out[17] = checksum;
+
+	enqueueNextChunk(out,true);
+}
+
+function sendAll() {
+	let out = new Uint8Array(18);
+	out = [0x41,0x47,0x2,0,0x06,level,document.getElementById('left_thor_val').value,document.getElementById('right_thor_val').value,document.getElementById('lumbar_val').value,document.getElementById('knee_val').value,document.getElementById('left_pelvic_val').value,document.getElementById('right_pelvic_val').value,0,0,0,0,0,0x8C];
+	enqueueNextChunk(out,true);
+}
+function renderAirCellControl(o,name,id) {
+
+    let bard = document.createElement("div");
+	bard.classList.add("dualProgressBarOuter");
+	bard.id = name + "_bard";
+
+	let pli = document.createElement("input"); // pressure level input box
+	pli.type="number";
+	pli.value="0";
+	pli.id= name + "_user_val";
+	pli.addEventListener("keypress",function(e){
+		if (e.key === 'Enter'){
+			sendAirCellLevel(id,document.getElementById(name + "_user_val").value);
+			//bari.value=document.getElementById(name + "_user_val").value;
+		    DualProgressBarSetBar(bard,document.getElementById(name + "_user_val").value,0);
+		}
+	});
+	/*pli.oninput = function(e){
+		sendAirCellLevel(id,document.getElementById(name + "_user_val").value);
+		//bari.value=document.getElementById(name + "_user_val").value;
+		DualProgressBarSetBar(bard,document.getElementById(name + "_user_val").value,0);
+	};*/
+	pli.style.width = "64px";
+	pli.style.textAlign = "center";
+	
+	let bi = document.createElement("button");
+	bi.innerText=name;
+	bi.addEventListener("click",function(){
+		sendAirCellLevel(id,document.getElementById(name + "_user_val").value);
+		//bari.value=document.getElementById(name + "_user_val").value;
+		DualProgressBarSetBar(bard,document.getElementById(name + "_user_val").value,0);
+	});
+
+
+	let bari = document.createElement("progress");
+	bari.max="5";
+	bari.value="0";
+
+	let baro = document.createElement("progress");
+	baro.max="40";
+	baro.value="0";
+	baro.id = name + "_pressure";
+
+	
+
+    o.appendChild(bard);
+	//o.appendChild(bari);
+	//o.appendChild(baro);
+	o.appendChild(pli);
+	o.appendChild(bi);
+
+}
+
+function renderAllAirCellControls(){
+	let controls = document.getElementsByClassName("air_cell_control");
+	let air_cell_controls = document.getElementsByClassName("air_cell_control");
+	air_cell_controls = controls;
+	for(let i=0 ; i<controls.length;i++){
+		renderAirCellControl(controls[i],controls[i].getAttribute("data-name"),controls[i].getAttribute("data-bagid"));
+	}
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function addStyle(styles) { 
+              
+		/* Create style document */ 
+		var css = document.createElement('style'); 
+		css.type = 'text/css'; 
+
+		if (css.styleSheet)  
+			css.styleSheet.cssText = styles; 
+		else  
+			css.appendChild(document.createTextNode(styles)); 
+
+		/* Append style to the tag name */ 
+		document.getElementsByTagName("head")[0].appendChild(css); 
+	} 
+
+function DualProgressBarSetBar(o,val,bar){
+	val = Number.parseInt(val);
+	let target = o.getElementsByTagName("div")[bar];
+	let maxHeightPx = Number.parseInt(o.style.height);
+	let totalRange = o.dataset.max - o.dataset.min;
+	let multiplier = maxHeightPx/totalRange;
+
+	if(val>o.dataset.max){
+		val = o.dataset.max;
+	}
+	if(val<o.dataset.min){
+		val = o.dataset.min;
+	}
+
+	target.style.height = val*multiplier + "px";
+
+}
+
+function DualProgressBarInit(outer, min, max) {
+	//let outer = document.createElement("div");
+	let target = document.createElement("div");
+	let reading = document.createElement("div");
+
+	outer.dataset.min = min; // psi values
+	outer.dataset.max = max;
+
+	//outer.setAttribute("style","width:64px; height:256px; border: solid #333333 1px; position:relative;");
+	outer.style.width = "64px";                    
+	outer.style.height = "256px";
+	//outer.style.border = "solid #333333 1px";
+	outer.style.position = "relative";
+	outer.style.backgroundColor = "lightgrey";
+
+    target.style.width = "64px";              
+    target.style.height = "0px";
+    //target.style.borderTop = "solid #333333 1px";
+    target.style.position = "absolute";
+    target.style.opacity = "50%";
+    target.style.left = "0";
+    target.style.bottom = "0";
+    target.style.backgroundColor = "red";
+    target.style.borderRadius = "10px 10px 0px 0px";
+    target.style.transitionDuration = "0.5s";
+
+    reading.style.width = "64px";              
+    reading.style.height = "0px";
+    //reading.style.borderTop = "dashed #333333 1px";
+    reading.style.position = "absolute";
+    reading.style.opacity = "50%";
+    reading.style.left = "0";
+    reading.style.bottom = "0";
+    reading.style.backgroundColor = "yellow";
+    reading.style.borderRadius = "10px 10px 0px 0px";
+    reading.style.transitionDuration = "0.5s";
+
+    outer.appendChild(target);
+    outer.appendChild(reading);
+
+	 
+}
+
+function DrawPressurePoint(x,y,z){
+	var c = document.getElementById("heatmap");
+	let multiplierX = c.width/1000;
+	let multiplierY = c.height/1000;
+    var ctx = c.getContext("2d");
+
+    var requestAnimationFrame = window.requestAnimationFrame || 
+                            window.mozRequestAnimationFrame || 
+                            window.webkitRequestAnimationFrame || 
+                            window.msRequestAnimationFrame;
+
+    ctx.clearRect(0, 0, c.width, c.height);
+    ctx.beginPath();
+    ctx.fillRect(c.width-(x*multiplierX),c.height-(y*multiplierY),10,10);
+    ctx.stroke();
+
+	var grd = ctx.createRadialGradient(c.width-(x*multiplierX), c.height-(y*multiplierY), z/10, c.width-(x*multiplierX), c.height-(y*multiplierY), 5*(z/10));
+	grd.addColorStop(0, "red");
+	grd.addColorStop(1, "blue");
+
+	// Fill with gradient
+	ctx.fillStyle = grd;
+	ctx.fillRect(0, 0, c.width, c.height);
+}
+
+function oldDrawPressurePoint(x,y,z){
+	var c = document.getElementById("heatmap");
+	let multiplierX = c.width/1000;
+	let multiplierY = c.height/1000;
+    var ctx = c.getContext("2d");
+
+    var requestAnimationFrame = window.requestAnimationFrame || 
+                            window.mozRequestAnimationFrame || 
+                            window.webkitRequestAnimationFrame || 
+                            window.msRequestAnimationFrame;
+
+    ctx.clearRect(0, 0, c.width, c.height);
+    ctx.beginPath();
+    ctx.fillRect(c.width-(x*multiplierX),c.height-(y*multiplierY),10,10);
+    ctx.stroke();
+
+	var grd = ctx.createRadialGradient(c.width-(x*multiplierX), c.height-(y*multiplierY), z/10, c.width-(x*multiplierX), c.height-(y*multiplierY), 5*(z/10));
+	grd.addColorStop(0, "red");
+	grd.addColorStop(1, "blue");
+
+	// Fill with gradient
+	ctx.fillStyle = grd;
+	ctx.fillRect(0, 0, c.width, c.height);
+}
+
+
+
+
+</script>
+</head>
+<body>
+<canvas id="heatmap" width="250px" height="500px" style="border:1px solid #000000;" ></canvas>
+
+<div class="grid-container">
+  <div class="LeftT"><div class="air_cell_control" data-name="ThoracicLeft" 		data-bagid="0"></div></div>
+  <div class="RightT"><div class="air_cell_control" data-name="ThoracicRight" 	data-bagid="1"></div></div>
+  <div class="LumB"><div class="air_cell_control" data-name="Lumbar" 			data-bagid="2"></div></div>
+  <div class="KneeR"><div class="air_cell_control" data-name="KneeRaise" 		data-bagid="3"></div></div>
+  <div class="LeftP"><div class="air_cell_control" data-name="PelvicLeft" 		data-bagid="4"></div></div>
+  <div class="RightP"><div class="air_cell_control" data-name="PelvicRight" 		data-bagid="5"></div></div>
+</div>
+	
+<div id="connection-panel" style="float: left;">
+	<button id="clientConnectButton" type="button" onclick="connectionToggle()">Connect</button>
+</div>
+
+<div id="connected-panel" style="float: left; display: none;">
+    <div style="float: left;">
+        &nbsp;
+    </div>
+	<div style="float: left;">
+		<!-- <button id="uploadFile" type="button" onclick="document.getElementById('dialogUpload').style.backgroundColor='white';document.getElementById('dialogUpload').open='open'">upload</button> -->
+		<!-- <button id="downloadFile" type="button" onclick="document.getElementById('dialogDownload').style.backgroundColor='white';document.getElementById('dialogDownload').open='open'">download</button> -->
+				
+	</div>
+</div>
+
+<dialog id="dialogUpload">
+	<input id="fileUpload" type="file" accept="*" onchange="changeFile()">
+	<input id="fileName" type="text">
+	<button onclick="uploadFile()">ok</button>
+	<button onclick="canelUpload(); document.getElementById('dialogUpload').open='';">cancel</button>
+</dialog>
+
+<dialog id="dialogDownload">
+	<input id="downloadName" type="text">
+	<button onclick="downloadFile()">ok</button>
+	<button onclick="cancelDownload(); document.getElementById('dialogDownload').open='';">cancel</button>
+</dialog>
+
+<div id='terminal' style="width:100%; height:240px; clear: left;"></div>
+          
+
+</body>	
+</html>

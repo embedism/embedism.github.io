@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://embedism.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://embedism.com/" rel="alternate" type="text/html" /><updated>2021-04-01T10:32:27+01:00</updated><id>https://embedism.com/feed.xml</id><title type="html">Embedism</title><subtitle>Embedism provides affordable engineering and professional prototyping services
+ to SMEs and individuals looking to develop products</subtitle><entry><title type="html">Development Platforms</title><link href="https://embedism.com/blog/development-platforms/" rel="alternate" type="text/html" title="Development Platforms" /><published>2021-04-01T08:45:28+01:00</published><updated>2021-04-01T08:45:28+01:00</updated><id>https://embedism.com/blog/development-platforms</id><content type="html" xml:base="https://embedism.com/blog/development-platforms/">&lt;p&gt;Some projects require a robust development platform for testing out ideas, but what types of platform are there, and how can they propel your product development?
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-a-development-platform&quot;&gt;What is a Development Platform?&lt;/h2&gt;
+
+&lt;p&gt;Development platforms are hardware, software, or firmware tools that aid you in developing your product’s functionality without having to fully complete the design. These tools should allow you to quickly iterate on ideas to test out features. They also need to be easy enough to use that the cost of creating them is outweighed by the time savings during development.&lt;/p&gt;
+
+&lt;h2 id=&quot;types-of-development-platform&quot;&gt;Types of Development Platform&lt;/h2&gt;
+
+&lt;p&gt;There are ready-to-go development platforms out there and these are certainly worth a look, we are big advocates of encouraging people to get into prototyping! When you are ready to move towards custom hardware Embedism can support you in creating the perfect development platform for your project.&lt;/p&gt;
+
+&lt;p&gt;First, let’s take a look at existing off the shelf options before moving onto the more powerful and flexible custom solutions.&lt;/p&gt;
+
+&lt;h3 id=&quot;existing-hardware-platforms&quot;&gt;Existing Hardware Platforms&lt;/h3&gt;
+
+&lt;p&gt;There are countless hardware development platforms available ranging from Arduino-compatible boards to development kits from individual vendors such as the Nordic DKs and TI LaunchPad. These typically need to be used with particular development environments in order to write code and applications.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Key Benefits&lt;/th&gt;
+      &lt;th&gt;Main Downsides&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;pre-verified hardware&lt;/td&gt;
+      &lt;td&gt;often physically very large&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;online support forums&lt;/td&gt;
+      &lt;td&gt;limited in functionality without expansion boards&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;low-cost&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;existing-firmware-platforms&quot;&gt;Existing Firmware Platforms&lt;/h3&gt;
+
+&lt;p&gt;Some hardware development platforms are compatible with firmware tools such as Microsoft Makecode or other drag-n-drop interfaces.&lt;/p&gt;
+
+&lt;p&gt;Whilst the functionality of these tools is limited they can really help to speed up product development for simple products.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Key Benefits&lt;/th&gt;
+      &lt;th&gt;Main Downsides&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;quick and easy to make simple applications&lt;/td&gt;
+      &lt;td&gt;very limited in functionality&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;free&lt;/td&gt;
+      &lt;td&gt;relies on using supported hardware&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;custom-software-platforms&quot;&gt;Custom Software Platforms&lt;/h3&gt;
+
+&lt;p&gt;Developing code on embedded devices can be slow due to long compile times, limited debugging ability and the general inconvenience of being tethered to your desk and programming tools.&lt;/p&gt;
+
+&lt;p&gt;Embedism adopts an innovative approach that allows the enormous power of modern computers to be put to work for embedded development. We can create platforms and emulators for core aspects of your product that allow tweaks and performance enhancements to be made orders of magnitude faster than can be achieved by writing embedded code alone.&lt;/p&gt;
+
+&lt;p&gt;This works since we develop as much application code as possible to be platform independent, creating our own platform layer between the hardware and vendor HAL and your unique application code. To get your application running on the desktop this platform layer is recreated for the PC and the application ported over.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Key Benefits&lt;/th&gt;
+      &lt;th&gt;Main Downsides&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;utilise computers to speed up development&lt;/td&gt;
+      &lt;td&gt;requires specialist knowledge when writing and porting code&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;ideas can be tested extremely fast&lt;/td&gt;
+      &lt;td&gt;upfront cost&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;allow for more flexible working methods&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;don’t have to deal with hardware issues&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;custom-hardware-and-firmware-platforms&quot;&gt;Custom Hardware and Firmware Platforms&lt;/h3&gt;
+
+&lt;p&gt;The ultimate development platform is one that represents your product’s hardware, functionality, and also allows for testing in the target environment. This is very difficult to achieve using existing platforms and a computer-based emulator of your product can’t be used in the target environment - especially if it’s a wearable!&lt;/p&gt;
+
+&lt;p&gt;We can develop a custom hardware platform alongside the necessary software and firmware tools you need to test out your ideas. In the past we have created: drag-n-drop interfaces for controlling kitchen appliances, command line interfaces for wearables, rules engines for sensing devices, and dual-build code bases for emulating GUIs on both a PC and the target hardware.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;You will have more control over your product’s development and as a result will reduce your spend with external contractors and get to market quicker!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Key Benefits&lt;/th&gt;
+      &lt;th&gt;Main Downsides&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;utilise custom tools to speed up development&lt;/td&gt;
+      &lt;td&gt;initial upfront cost and time&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;hardware can be tested in target environment&lt;/td&gt;
+      &lt;td&gt;cost of change if target hardware needs to change significantly&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;lower overall project cost and time&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;identify project risks and hurdles earlier&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;something to show potential investors and backers&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;a href=&quot;/resource-pack/Embedism-Dev-Platforms-v1.5.pdf&quot;&gt;Download this post as a PDF&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;about-embedism&quot;&gt;About Embedism&lt;/h2&gt;
+
+&lt;p&gt;Embedism was founded by Chay Strawbridge and Nathan Ruttley to provide an affordable alternative to expensive engineering consultancies.&lt;/p&gt;
+
+&lt;p&gt;Our primary focus is giving you useful output at every stage. We want you to have the confidence that we are approaching your work in the best way possible whilst also not tying you into lengthy development contracts. Product development is a journey with lots of twists and turns, if your needs change we do our utmost to be flexible and change our work to best fit your new needs.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Get in touch with us at hello@embedism.com or call us on 020 3290 7314&lt;/strong&gt;&lt;/p&gt;</content><author><name></name></author><category term="blog" /><summary type="html">Some projects require a robust development platform for testing out ideas, but what types of platform are there, and how can they propel your product development?</summary></entry><entry><title type="html">Life Beyond Arduino</title><link href="https://embedism.com/blog/life-beyond-arduino/" rel="alternate" type="text/html" title="Life Beyond Arduino" /><published>2020-09-04T13:45:28+01:00</published><updated>2020-09-04T13:45:28+01:00</updated><id>https://embedism.com/blog/life-beyond-arduino</id><content type="html" xml:base="https://embedism.com/blog/life-beyond-arduino/">&lt;p&gt;As the first port of call for most prototypes, what can we do to move beyond Arduino and do we even need to?
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;p&gt;The first thing many of us turn to when we have a new project idea is the Arduino ecosystem, and rightly so. Arduino has a plethora of MCU options, shields to expand your project, and libraries for every conceivable purpose. Its open-source core has fostered a vibrant community of helpful, curious, and creative people who will go above and beyond to help you out. What else could be better for spinning up a prototype in the shortest time possible?&lt;/p&gt;
+
+&lt;p&gt;Businesses like Adafruit are expanding the possibilities of what we can achieve using Arduino. By preserving the open-source roots they have increased choice for makers.&lt;/p&gt;
+
+&lt;p&gt;Beyond the Atmel 8-bit MCUs offered since 2005, now Wi-Fi, LoRa and 32-bit MCUs are firmly into the hands of makers.&lt;/p&gt;
+
+&lt;p&gt;Arduino recently launched Arduino Create. This online editing and compilation platform, like ARM’s Mbed, lowers the barrier to entry further. Now people using shared computers, like school students, have a place to store and work on their code.&lt;/p&gt;
+
+&lt;p&gt;Electronics is now with the masses and the offering keeps getting better. So why would you ever want to move on from Arduino?&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Before we move on let’s clarify some terminology so that we’re all on the same page:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Arduino: the physical Arduino (or Arduino-esque) product. In other words, the bit that you buy and then build your system around.&lt;/li&gt;
+  &lt;li&gt;Arduino IDE: the software that you download onto your computer to create Sketches and compile your code.&lt;/li&gt;
+  &lt;li&gt;Arduino Compatible: Hardware that works with the Arduino IDE.&lt;/li&gt;
+  &lt;li&gt;Development Board (or Dev Board): products that you build your system around but are not part of the standard Arduino offering.&lt;/li&gt;
+  &lt;li&gt;Shields: the things that you plug into your Arduino by their matching header pins. They allow you to expand your system with different I/O options, transducers, drivers, screens, you name it!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;em&gt;Before we get started, if you came here wanting to find out which Arduino will be best for your project, you won’t find the answers here. Take a look at &lt;a href=&quot;https://blog.hackster.io/picking-the-right-arduino-341a0a9550c7&quot;&gt;Picking The Right Arduino&lt;/a&gt; from Hackster.io instead.&lt;/em&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;motivations-to-move-beyond-arduino&quot;&gt;Motivations to Move Beyond Arduino&lt;/h2&gt;
+
+&lt;p&gt;What motivations might you have to move beyond Arduino? This section takes a look at some of the reasons in more detail.&lt;/p&gt;
+
+&lt;h3 id=&quot;more-professional-prototypes&quot;&gt;More Professional Prototypes&lt;/h3&gt;
+
+&lt;p&gt;You’ve got a prototype and you think your idea is marketable. Now you want to let some of your friends try out your product, or put it in front of investors . But your box of jumper wires, shields and Arduino Mega is hardly going to inspire confidence, is it?&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The true value of a product is not measured by the components that make it up, but by the benefits and joy that it brings into the user’s life.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Firstly: never feel ashamed of your tangle of wires and don’t shy away from getting feedback on your first proof-of-concept. It can be a great confidence boost to have your idea validated, especially when it doesn’t meet any aesthetic requirements.&lt;/p&gt;
+
+&lt;p&gt;If the feedback isn’t so positive (we’ve all been there) then it might be best to refine your idea. Nailing down your idea before spending too much time and money will avoid you getting trapped by bad decisions further down the line. Using off-the-shelf hardware is a valid way to build prototypes. After all, the true value of a product is not measured by the components that make it up, but rather by the benefits and joy that it brings into the user’s life.&lt;/p&gt;
+
+&lt;p&gt;“Prototypes” that make it out in to the wild now are often very well refined. So remember that people may not feel comfortable parting with their money and testing your product if it is not in a familiar format.&lt;/p&gt;
+
+&lt;h3 id=&quot;robustness&quot;&gt;Robustness&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“Oh, that was working when I left the house…”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Moving your prototype around has inherent risks. The temporary connections made to pin headers and breadboards are exactly that, temporary. Transporting prototypes like this leads to frantic repairs and debugging at your destination. Don’t do this under pressure in front of potential investors. Embarrassment and damage to your pitch won’t help your confidence or investment opportunity.&lt;/p&gt;
+
+&lt;h3 id=&quot;taking-control-of-your-hardware&quot;&gt;Taking Control of Your Hardware&lt;/h3&gt;
+
+&lt;p&gt;Using dev boards forces you to conform to someone else’s implementation of an MCU. Pins may have extra hardware connected, preventing you utilising their different functions. Sometimes dev boards only come with a subset of the MCU options in a device family. What if you need a variant with a different operating frequency or extra IO? These design constraints can restrict your product’s functionality.&lt;/p&gt;
+
+&lt;p&gt;Being proud of your design is also important. Holding a product in your hand that you designed from the ground up is one of the most gratifying feelings. Of course, that product should be well-considered and useful so don’t rush to build custom hardware!&lt;/p&gt;
+
+&lt;h3 id=&quot;space-constraints&quot;&gt;Space Constraints&lt;/h3&gt;
+
+&lt;p&gt;Squeezing a dev board and the rest of your wiring into a small box can be difficult. There’s little point gunning for miniaturisation on the first prototype but if your new wearable covers a tabletop you might need to reconsider your architecture.&lt;/p&gt;
+
+&lt;p&gt;We’ve all been surprised at just how much of a beating an Arduino can take, but all of the hardware to make it robust in unpredictable situations can add unnecessary bulk.&lt;/p&gt;
+
+&lt;p&gt;Do you need that serial-to-USB converter? Or can you hook up a C232HM cable and talk directly to the MCU? By removing components that don’t add to your system you can reduce the size of your prototype.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;solutions&quot;&gt;Solutions&lt;/h3&gt;
+
+&lt;p&gt;So how do you make your tangle of wires more professional and robust? Let’s treat the options as a sliding scale from what you have now — a tangle of wires hanging off an Arduino, all the way up to a custom DFM-ready PCB. There will be a point somewhere on this scale that satisfies both your time and budget.&lt;/p&gt;
+
+&lt;p&gt;Moving along this scale also represents you “formalising” your design more and more. As you move toward a PCB you have to be less fluid about your design as changes become time-consuming and costly.&lt;/p&gt;
+
+&lt;h4 id=&quot;tidying-up&quot;&gt;Tidying up&lt;/h4&gt;
+
+&lt;p&gt;An important step to help you understand and formalise your design is to have a proper tidy up. Start by making a note of all your connections (a schematic might be useful but using a tool like Fritzing would also be good at this stage). Then work out what groups of wires (harnesses) can be bunched together and get to work with cable ties to tidy up the rats’ nest!&lt;/p&gt;
+
+&lt;p&gt;You could go a step further and put your prototype in a suitable container, drilling holes for any IO that’s needed. This has the added benefit of making your prototype more portable and robust too.&lt;/p&gt;
+
+&lt;h4 id=&quot;stripboard-and-shields&quot;&gt;Stripboard and Shields&lt;/h4&gt;
+
+&lt;p&gt;Shields are extensively used in most prototypes so why not make a custom one for your product? Prototyping stripboard can be modified to fit Arduino headers. Or, budget permitting, PCBs are available that fit directly on to the Arduino with tracks that allow you to make your own connections.&lt;/p&gt;
+
+&lt;p&gt;At this point a schematic will be useful so convert your diagrams from the first stage using a tool like EAGLE. Once you’ve done that you can work out the best places to put your components on to your custom shield or even have an attempt at designing a shield PCB!&lt;/p&gt;
+
+&lt;h4 id=&quot;custom-hardware-development&quot;&gt;Custom Hardware Development&lt;/h4&gt;
+
+&lt;p&gt;Arduino is an open-source platform so you can use their designs as a base for your own (be sure to check the license terms). Start off by grabbing the EAGLE CAD files for the Arduino board you have based your design around. Then build it up from there, modifying, adding, and removing connections as you see fit.&lt;/p&gt;
+
+&lt;p&gt;You can still use the Arduino IDE to program your custom boards so long as you have the correct connections. Make sure you have a suitable programming tool (like an Atmel ICE or AVR Dragon). That means that you might not even have to rewrite any code, making the transition even easier.&lt;/p&gt;
+
+&lt;p&gt;There are a plethora of articles online about how to best design PCBs. From hand assembly to automated, good design practises for PCBs, and tips for getting things right first time. Do your research and you’ll have custom PCBs in your hands in no time!&lt;/p&gt;
+
+&lt;h2 id=&quot;moving-on-altogether&quot;&gt;Moving On Altogether&lt;/h2&gt;
+
+&lt;p&gt;There are lots of maker-friendly options outside of the Arduino ecosystem. Arm’s Mbed is a real contender as it has an online compiler and boards from a wide range of manufacturers including ST and Nordic. Solutions from these manufacturers will allow you to get high performance out of tiny ICs along with adding built-in bluetooth and cryptographic functions.&lt;/p&gt;</content><author><name></name></author><category term="blog" /><summary type="html">As the first port of call for most prototypes, what can we do to move beyond Arduino and do we even need to?</summary></entry><entry><title type="html">Testing</title><link href="https://embedism.com/hardware/hardware-test/" rel="alternate" type="text/html" title="Testing" /><published>2020-09-04T13:45:28+01:00</published><updated>2020-09-04T13:45:28+01:00</updated><id>https://embedism.com/hardware/hardware-test</id><content type="html" xml:base="https://embedism.com/hardware/hardware-test/">&lt;p&gt;Rigorous testing and iterative design improvements to refine your product.&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot;font-weight: 500; letter-spacing: 0.1em; text-transform: none;&quot;&gt;We debug design issues until they are fully understood and resolved. Our testing partners can help you work towards CE, FCC, and rest-of-world certifications.&lt;/p&gt;
+&lt;!--more--&gt;</content><author><name></name></author><category term="hardware" /><summary type="html">Rigorous testing and iterative design improvements to refine your product. We debug design issues until they are fully understood and resolved. Our testing partners can help you work towards CE, FCC, and rest-of-world certifications.</summary></entry><entry><title type="html">Prototyping</title><link href="https://embedism.com/hardware/hardware-proto/" rel="alternate" type="text/html" title="Prototyping" /><published>2020-09-04T13:45:28+01:00</published><updated>2020-09-04T13:45:28+01:00</updated><id>https://embedism.com/hardware/hardware-proto</id><content type="html" xml:base="https://embedism.com/hardware/hardware-proto/">&lt;p&gt;Get your prototypes fabricated and assembled in the UK or in Asia. We offer 3D printing and laser cutting from our UK workshop.&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot;font-weight: 500; letter-spacing: 0.1em; text-transform: none;&quot;&gt;Our in-house prototyping ability is second to none. We can hand assemble you prototype boards and complete your box-build too.&lt;/p&gt;
+&lt;!--more--&gt;</content><author><name></name></author><category term="hardware" /><summary type="html">Get your prototypes fabricated and assembled in the UK or in Asia. We offer 3D printing and laser cutting from our UK workshop. Our in-house prototyping ability is second to none. We can hand assemble you prototype boards and complete your box-build too.</summary></entry><entry><title type="html">PCB Design</title><link href="https://embedism.com/hardware/hardware-pcb/" rel="alternate" type="text/html" title="PCB Design" /><published>2020-09-04T13:45:21+01:00</published><updated>2020-09-04T13:45:21+01:00</updated><id>https://embedism.com/hardware/hardware-pcb</id><content type="html" xml:base="https://embedism.com/hardware/hardware-pcb/">&lt;p&gt;We turn your idea or prototype into a detailed schematic and manufacturable circuit board.&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot;font-weight: 500; letter-spacing: 0.1em; text-transform: none;&quot;&gt;We use KiCad and Altium and have experience in designing for: miniaturisation, high density, multi-layer, mixed signal, analogue, digital.&lt;/p&gt;
+&lt;!--more--&gt;</content><author><name></name></author><category term="hardware" /><summary type="html">We turn your idea or prototype into a detailed schematic and manufacturable circuit board. We use KiCad and Altium and have experience in designing for: miniaturisation, high density, multi-layer, mixed signal, analogue, digital.</summary></entry><entry><title type="html">Technologies</title><link href="https://embedism.com/hardware/hardware-tech/" rel="alternate" type="text/html" title="Technologies" /><published>2020-09-04T13:40:00+01:00</published><updated>2020-09-04T13:40:00+01:00</updated><id>https://embedism.com/hardware/hardware-tech</id><content type="html" xml:base="https://embedism.com/hardware/hardware-tech/">&lt;p&gt;We work across various industries implementing a wide range of technologies.&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot;font-weight: 500; letter-spacing: 0.1em; text-transform: none;&quot;&gt;Technologies and sectors we commonly work across include: BLE, IOT, Wearables, Light Industrial, Consumer, Sensing, Audio, Video, Smart Home, Health and Wellness.&lt;/p&gt;
+&lt;!--more--&gt;</content><author><name></name></author><category term="hardware" /><summary type="html">We work across various industries implementing a wide range of technologies. Technologies and sectors we commonly work across include: BLE, IOT, Wearables, Light Industrial, Consumer, Sensing, Audio, Video, Smart Home, Health and Wellness.</summary></entry><entry><title type="html">Platforms</title><link href="https://embedism.com/firmware/firmware-platform/" rel="alternate" type="text/html" title="Platforms" /><published>2020-09-02T13:45:28+01:00</published><updated>2020-09-02T13:45:28+01:00</updated><id>https://embedism.com/firmware/firmware-platform</id><content type="html" xml:base="https://embedism.com/firmware/firmware-platform/">&lt;p style=&quot;font-weight: 500; letter-spacing: 0.1em; text-transform: none;&quot;&gt;No matter what your embedded target platform is we can write firmware for it. We work with super low-level MCUs like the ATMEGA and PIC right up to more powerful ARM cores from ST and Nordic.&lt;/p&gt;
+&lt;!--more--&gt;</content><author><name></name></author><category term="firmware" /><summary type="html">No matter what your embedded target platform is we can write firmware for it. We work with super low-level MCUs like the ATMEGA and PIC right up to more powerful ARM cores from ST and Nordic.</summary></entry><entry><title type="html">Technologies</title><link href="https://embedism.com/firmware/firmware-tech/" rel="alternate" type="text/html" title="Technologies" /><published>2020-09-01T13:45:28+01:00</published><updated>2020-09-01T13:45:28+01:00</updated><id>https://embedism.com/firmware/firmware-tech</id><content type="html" xml:base="https://embedism.com/firmware/firmware-tech/">&lt;p style=&quot;font-weight: 500; letter-spacing: 0.1em; text-transform: none;&quot;&gt;We work across an unparalleled breadth of areas, encompassing low power comms like BLE, audio/video processing, and a multitude of sensing technologies. We have a breadth of experience in signal processing, sensing applications, mathematics and crypto, and communications protocols.&lt;/p&gt;
+&lt;!--more--&gt;</content><author><name></name></author><category term="firmware" /><summary type="html">We work across an unparalleled breadth of areas, encompassing low power comms like BLE, audio/video processing, and a multitude of sensing technologies. We have a breadth of experience in signal processing, sensing applications, mathematics and crypto, and communications protocols.</summary></entry><entry><title type="html">Hosted Environments</title><link href="https://embedism.com/firmware/firmware-hosted/" rel="alternate" type="text/html" title="Hosted Environments" /><published>2020-09-01T13:45:28+01:00</published><updated>2020-09-01T13:45:28+01:00</updated><id>https://embedism.com/firmware/firmware-hosted</id><content type="html" xml:base="https://embedism.com/firmware/firmware-hosted/">&lt;p style=&quot;font-weight: 500; letter-spacing: 0.1em; text-transform: none;&quot;&gt;We can create customised software to help you test your hardware, such as Windows emulators and drag-n-drop scripting interfaces&lt;/p&gt;
+&lt;!--more--&gt;</content><author><name></name></author><category term="firmware" /><summary type="html">We can create customised software to help you test your hardware, such as Windows emulators and drag-n-drop scripting interfaces</summary></entry><entry><title type="html">Full Stack Awareness</title><link href="https://embedism.com/firmware/firmware-full-stack/" rel="alternate" type="text/html" title="Full Stack Awareness" /><published>2020-09-01T13:45:28+01:00</published><updated>2020-09-01T13:45:28+01:00</updated><id>https://embedism.com/firmware/firmware-full-stack</id><content type="html" xml:base="https://embedism.com/firmware/firmware-full-stack/">&lt;p style=&quot;font-weight: 500; letter-spacing: 0.1em; text-transform: none;&quot;&gt;Embedism has worked with leading cloud services like Google Firebase, and developed firmware that works with iOS and Android apps. We build firmware that doesn't limit the future possibilities of your product.&lt;/p&gt;
+&lt;!--more--&gt;</content><author><name></name></author><category term="firmware" /><summary type="html">Embedism has worked with leading cloud services like Google Firebase, and developed firmware that works with iOS and Android apps. We build firmware that doesn't limit the future possibilities of your product.</summary></entry></feed>

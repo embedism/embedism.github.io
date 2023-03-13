@@ -1,0 +1,347 @@
+<!DOCTYPE HTML>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-176713209-1"></script>
+		<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-176713209-1');
+		</script>
+		
+		<title>Your Idea | Embedism</title>
+		<meta name="description" content="Embedism provides high quality electronic engineering and firmware design services at affordable prices. We bring your ideas to life.">
+
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "Organization",
+			"url": "https://embedism.com",
+			"logo": "https://embedism.com/images/embedism.png"
+		}
+		</script>
+		
+
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href=https://embedism.com/assets/css/main.css />
+		<noscript><link rel="stylesheet" href=https://embedism.com/assets/css/noscript.css /></noscript>
+
+		<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Your Idea | Embedism</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Your Idea" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Embedism provides affordable engineering and professional prototyping services to SMEs and individuals looking to develop products" />
+<meta property="og:description" content="Embedism provides affordable engineering and professional prototyping services to SMEs and individuals looking to develop products" />
+<link rel="canonical" href="https://embedism.com/your-idea/" />
+<meta property="og:url" content="https://embedism.com/your-idea/" />
+<meta property="og:site_name" content="Embedism" />
+<meta name="google-site-verification" content="7faac71f1d48bab2" />
+<script type="application/ld+json">
+{"url":"https://embedism.com/your-idea/","description":"Embedism provides affordable engineering and professional prototyping services to SMEs and individuals looking to develop products","headline":"Your Idea","@type":"WebPage","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+		<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="4f7a9272-9b19-4f0c-93de-7ef40f70a562";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+						<a href=https://embedism.com/ class="logo">
+							<strong>Embedism</strong><span>beyond prototyping</span></a>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<ul class="links">
+						
+							
+							
+								<li><a href="https://embedism.com/404.html"></a></li>
+							
+							
+							
+								<li><a href="https://embedism.com/robots.txt"></a></li>
+							
+							
+							
+								<li><a href="https://embedism.com/sitemap.xml"></a></li>
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+								<li><a href="https://embedism.com/feed.xml"></a></li>
+							
+							
+							
+								<li><a href="https://embedism.com/">Home</a></li>
+							
+							
+							
+								<li><a href="https://embedism.com/mission/">Mission</a></li>
+							
+							
+							
+								<li><a href="https://embedism.com/capabilities/">Capabilities</a></li>
+							
+							
+							
+								<li><a href="https://embedism.com/hardware/">Hardware</a></li>
+							
+							
+							
+								<li><a href="https://embedism.com/firmware/">Firmware</a></li>
+							
+							
+							
+								<li><a href="https://embedism.com/your-idea/">Your Idea</a></li>
+							
+							
+							
+								<li><a href="https://embedism.com/clients/">Clients</a></li>
+							
+							
+							
+								<li><a href="https://embedism.com/production/">Production</a></li>
+							
+							
+							
+								<li><a href="https://embedism.com/partnerships/">Partnerships</a></li>
+							
+							
+							
+								<li><a href="https://embedism.com/blog/">Blog</a></li>
+							
+							
+						</ul>
+					</nav>
+
+				<!-- Content -->
+				<script src=https://embedism.com/assets/js/jquery.min.js></script>
+<script src=https://embedism.com/assets/js/popper.min.js></script>
+<script src=https://embedism.com/assets/js/bootstrap.min.js></script>
+<script>
+    // for validating the forms
+    (function () {
+        'use strict';
+        window.addEventListener(
+            'load', function () {
+                var formObject = $('#contact-form');
+                var form = formObject[0];
+                if (form != undefined) {
+                    form.addEventListener(
+                        'submit',
+                        function (event) {
+                            let submitBtn = document.getElementById("submit-button");
+                            submitBtn.disabled = true;
+                            submitBtn.value = 'Submitting idea...';
+
+                            if (form.checkValidity() === false) {
+                                submitBtn.disabled = false;
+                                submitBtn.value = 'Please try again';
+                                event.preventDefault();
+                                event.stopPropagation();
+                            }
+                            else {
+                                var url = 'https://script.google.com/macros/s/AKfycbwGTg12WMbVbd3hm3pSCTLQqPukSvtkOgRmjbRwOuKTr34N45j5/exec';
+                                var redirectSuccessUrl = '/thanks/';
+                                var redirectFailedUrl = '/failed/';
+                                var xhr = $.ajax({
+                                    url: url,
+                                    method: 'GET',
+                                    dataType: 'json',
+                                    data: formObject.serialize(),
+                                    success: function (data) {
+                                        submitBtn.disabled = false;
+                                        submitBtn.value = 'Submit Idea';
+                                        $(location).attr('href', redirectSuccessUrl);
+                                    },
+                                    error: function (data) {
+                                        submitBtn.disabled = false;
+                                        submitBtn.value = 'Submit Idea';
+                                        $(location).attr('href', redirectFailedUrl);
+                                    },
+                                });
+                                event.preventDefault();
+                                event.stopPropagation();
+                            }
+                            form.classList.add('was-validated');
+                        },
+                        false
+                    );
+                }
+            },
+            false
+        );
+    })();
+</script>
+<!-- Main -->
+<div id="main" class="alt">
+
+	<!-- One -->
+		<section id="one">
+			<div class="inner">
+				<header class="major">
+					<div id="breadcrumbs">
+
+<a href="/">Home</a>
+
+  
+    / Your Idea
+  
+
+</div>
+					<h1>Your Idea</h1>
+				</header>
+				<p>Tell us some details about your idea and we will send you a response detailing:</p>
+<ul>
+  <li>if your idea is feasible</li>
+  <li>some development routes you might want to explore</li>
+  <li>if we can work together to develop it</li>
+  <li>some routes to market</li>
+  <li>some routes to manufacture</li>
+</ul>
+
+<p>This is a no-obligation submission. We won’t give you the hard sell. If you would like an NDA in place before giving us any details please get in touch via the chat box and we will be happy to arrange it.</p>
+
+				<form id="contact-form" class="needs-validation" role="form" novalidate>
+					<div class="row gtr-uniform">
+						<div class="col-6 col-12-xsmall">
+							<input type="text" name="name" id="name" value="" placeholder="Name" required/>
+						</div>
+						<div class="col-6 col-12-xsmall">
+							<input type="email" name="email" id="email" value="" placeholder="Email" required/>
+						</div>
+						<!-- Break -->
+						<div class="col-12">
+							<select name="category" id="category">
+								<option value="">- Category -</option>
+								<option value="1">Wearable/Health Tech</option>
+								<option value="1">Smart Home</option>
+								<option value="1">Light Industrial</option>
+								<option value="1">Sensing/IOT</option>
+							</select>
+						</div>
+						<!-- Break -->
+						<div class="col-6 col-12-xsmall">
+							<input type="text" name="summary" id="summary" value="" placeholder="Summary of Idea" required/>
+						</div>
+						<div class="col-12">
+							<textarea name="description" id="description" placeholder="Enter a description of your idea" rows="6" required></textarea>
+						</div>
+						<!-- Break -->
+						<div class="col-12">
+							<ul class="actions">
+								<li><input type="submit" name="submit-form" value="Submit Idea" class="primary" id="submit-button" /></li>
+							</ul>
+						</div>
+					</div>
+				</form>
+			</div>
+		</section>
+
+</div>
+
+				
+
+				<!-- Contact -->
+					<section id="contact">
+						<div class="inner">
+							<section>
+								<section>
+									<div>
+										<h3>Get in touch</h3>
+										<span>Get in touch with us to have a chat about your project and to work out how we can help bring your idea to life.</br></br>You can chat to us at any time via the chat box in the bottom right corner of the site.</span>
+										</br></br>
+										<h3>Embedism</h3>
+										<span>Embedism provides affordable engineering and professional prototyping services
+ to SMEs and individuals looking to develop products across a broad range of categories. 
+ We build IOT, wearable, domestic, consumer, and light industrial electronics. We write firmware 
+ for BLE, low power, DSP, audio and video.</span>
+									</div>
+								</section>
+							</section>
+							<section class="split">
+								<section>
+									<div class="contact-method">
+										<span class="icon solid alt fa-envelope"></span>
+										<h3>Email</h3>
+										<a href="#">hello@embedism.com</a>
+									</div>
+								</section>
+								<section>
+									<div class="contact-method">
+										<span class="icon solid alt fa-phone"></span>
+										<h3>Phone</h3>
+										<span>+44 (0) 20 3290 7314</span>
+									</div>
+								</section>
+								<section>
+									<div class="contact-method">
+										<span class="icon solid alt fa-home"></span>
+										<h3>Address</h3>
+										<span>Embedism LTD<br />
+										Arch 533, Orphans Yard<br />
+										Brixton Station Road<br />
+London<br />
+										SW9 8QB
+										</span>
+									</div>
+								</section>
+							</section>
+						</div>
+					</section>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<ul class="icons">
+								<li><a href="https://www.instagram.com/embedism/" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+								<li><a href="https://github.com/embedism/" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								<li><a href="https://www.linkedin.com/company/19215489" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+								<li><a href="https://medium.com/embedism" class="icon brands alt fa-medium"><span class="label">Medium</span></a></li>
+							</ul>
+							<ul class="copyright">
+								<li>&copy; Embedism LTD 2019-2020</li></br>
+								<li>Design: <a href="https://html5up.net">HTML5 UP</a>  |  Converted to run on Jekyll by Embedism</li>
+								<li>Embedism Limited is a company registered in England and Wales with company number 11939367  |  <a href=https://embedism.com/privacy-policy>Privacy Policy</a>  |  <a href=https://embedism.com/terms-of-service>Terms of Service</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+		<script src=https://embedism.com/assets/js/jquery.min.js></script>
+		<script src=https://embedism.com/assets/js/jquery.scrolly.min.js></script>
+		<script src=https://embedism.com/assets/js/jquery.scrollex.min.js></script>
+		<script src=https://embedism.com/assets/js/browser.min.js></script>
+		<script src=https://embedism.com/assets/js/breakpoints.min.js></script>
+		<script src=https://embedism.com/assets/js/util.js></script>
+		<script src=https://embedism.com/assets/js/main.js></script>
+
+	</body>
+</html>
